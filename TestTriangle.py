@@ -17,16 +17,55 @@ from Triangle import classifyTriangle
 class TestTriangles(unittest.TestCase):
     # define multiple sets of tests as functions with names that begin
 
+    def testIfValidInput1(self):
+        self.assertEqual(classifyTriangle(300, 4, 5), 'InvalidInput')
+
+    def testIfValidInput2(self):
+        self.assertEqual(classifyTriangle(3, 400, 5), 'InvalidInput')
+    
+    def testIfValidInput3(self):
+        self.assertEqual(classifyTriangle(3, 4, 500), 'InvalidInput')
+    
+    def testIfValidInput4(self):
+        self.assertEqual(classifyTriangle(-20, 4, 5), 'InvalidInput')
+    
+    def testIfValidInput5(self):
+        self.assertEqual(classifyTriangle(3, -4, 5), 'InvalidInput')
+    
+    def testIfValidInput6(self):
+        self.assertEqual(classifyTriangle(3, 4, -5), 'InvalidInput')
+    
+    def testIfInteger(self):
+        self.assertEqual(classifyTriangle(3.5,4,5), 'NotATriangle')
+
+    def testIsTriangle1(self):
+        self.assertEqual(classifyTriangle(3,4,9), 'NotATriangle')
+    
+    def testIsTriangle2(self):
+        self.assertEqual(classifyTriangle(5,7,9), 'Scalene')
+    
+    def testIsTriangle3(self):
+        self.assertEqual(classifyTriangle(3,4,5), 'Right')
+
     def testRightTriangleA(self): 
-        self.assertEqual(classifyTriangle(3,4,5),'Right','3,4,5 is a Right triangle')
+        self.assertEqual(classifyTriangle(3,4,5), 'Right')
 
     def testRightTriangleB(self): 
-        self.assertEqual(classifyTriangle(5,3,4),'Right','5,3,4 is a Right triangle')
+        self.assertEqual(classifyTriangle(5,3,4),'Right')
         
     def testEquilateralTriangles(self): 
-        self.assertEqual(classifyTriangle(1,1,1),'Equilateral','1,1,1 should be equilateral')
+        self.assertEqual(classifyTriangle(1,1,1),'Equilateral')
+    
+    def testIsoscelesTrianglesA(self):
+        self.assertEqual(classifyTriangle(4,4,6), 'Isosceles')
+
+    def testIsoscelesTrianglesB(self):
+        self.assertEqual(classifyTriangle(2,3,2), 'Isosceles')
+    
+    def testScaleneTriangles(self):
+        self.assertEqual(classifyTriangle(5,12,13), 'Scalene')
 
 if __name__ == '__main__':
     print('Running unit tests')
-    unittest.main()
+    unittest.main(verbosity=2, exit=False)
 
